@@ -1,9 +1,9 @@
-const puppeteer = require('puppeteer');
-var Promise = require('bluebird');
+const chromium = require('chrome-aws-lambda');
+let Promise = require('bluebird');
 const hb = require('handlebars')
 
 module.exports
-async function generatePdf(file, options, callback) {
+const generatePdf = async (file, options, callback) => {
   // we are using headless mode
   let args = [
     '--no-sandbox',
@@ -14,7 +14,7 @@ async function generatePdf(file, options, callback) {
     delete options.args;
   }
 
-  const browser = await puppeteer.launch({
+  const browser = chromium.puppeteer.launch({
     args: args
   });
   const page = await browser.newPage();
@@ -42,7 +42,7 @@ async function generatePdf(file, options, callback) {
     }).asCallback(callback);
 }
 
-async function generatePdfs(files, options, callback) {
+const generatePdfs =  async (files, options, callback) => {
   // we are using headless mode
   let args = [
     '--no-sandbox',
