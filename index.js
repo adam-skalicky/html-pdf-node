@@ -14,7 +14,7 @@ const generatePdf = async (file, options, callback) => {
     delete options.args;
   }
 
-  const browser = chromium.puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     args: args
   });
   const page = await browser.newPage();
