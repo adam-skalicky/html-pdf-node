@@ -53,6 +53,7 @@ const generatePdfs =  async (files, options, callback) => {
     delete options.args;
   }
   const browser = await puppeteer.launch({
+    executablePath: await chromium.executablePath,
     args: args
   });
   let pdfs = [];
