@@ -4,20 +4,10 @@ const hb = require('handlebars')
 
 module.exports
 const generatePdf = async (file, options, callback) => {
-  // we are using headless mode
-  let args = [
-    '--no-sandbox',
-    '--disable-setuid-sandbox',
-  ];
-  if(options.args) {
-    args = options.args;
-    delete options.args;
-  }
-
   const browser = await chromium.puppeteer.launch({
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
-    headless: chromium.headless,
+    headless: true,
     args: chromium.args,
   });
   const page = await browser.newPage();

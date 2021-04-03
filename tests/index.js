@@ -32,14 +32,6 @@ describe('convert-html-to-pdf', function() {
       done();
     });
   });
-
-  it('convert-html-to-pdf-with-args', function(done) {
-    html.generatePdf({ url: 'https://www.google.com/' }, { format: 'A4', args: ['--no-sandbox'] }, function(err, result) {
-      expect(err).to.be.null;
-      expect(result).to.be.an.instanceOf(Buffer);
-      done();
-    });
-  });
 });
 
 describe('convert-array-of-htmls-to-pdfs', function() {
@@ -68,13 +60,4 @@ describe('convert-array-of-htmls-to-pdfs', function() {
     });
   });
 
-  it('convert-html-to-pdf-with-args', function(done) {
-    html.generatePdfs([{ url: 'https://www.google.com/' }], { format: 'A4', args: ['--no-sandbox'] }, function(err, result) {
-      expect(err).to.be.null;
-      expect(result).to.be.an.instanceOf(Array);
-      expect(result[0]).to.be.an.instanceOf(Object);
-      expect(result[0].buffer).to.be.an.instanceOf(Buffer);
-      done();
-    });
-  });
 });
